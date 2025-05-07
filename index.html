@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arima Kousei - El Piano de la Destrucción</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos temporales para visualización */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+        .viñeta {
+            display: none;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .viñeta.active {
+            display: block;
+        }
+        button {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Historial de decisiones (opcional) -->
+    <div id="historial-decisiones">
+        <h4>Tus decisiones:</h4>
+        <ul></ul>
+    </div>
+
+    <div class="historieta">
+        <!-- Viñeta 1 -->
+        <div class="viñeta active" id="viñeta1">
+            <h1>ARIMA KOUSEI</h1>
+            <p><strong>Año 2099, Planeta APRIL.</strong> Un villano gobierna con un único objetivo: destruir el mundo que le arrebató todo.</p>
+            <img src="imagenes/april.jpg" alt="Planeta APRIL" class="imagen-viñeta">
+            <button class="btn-siguiente" onclick="cambiarViñeta(2)">Siguiente</button>
+        </div>
+
+        <!-- Viñeta 2 -->
+        <div class="viñeta" id="viñeta2">
+            <h2>El Símbolo Roto</h2>
+            <p>Su capa negra y máscara de piano reflejan su arte perdido. <em>"La música murió con ella"</em>, murmura.</p>
+            <img src="imagenes/arima.jpg" alt="Arima con máscara" class="imagen-viñeta">
+            <button class="btn-siguiente" onclick="cambiarViñeta(3)">Siguiente</button>
+        </div>
+
+        <!-- Viñeta 3 -->
+        <div class="viñeta" id="viñeta3">
+            <h2>Flashback</h2>
+            <p>Hace 20 años, su madre, una pianista, murió protegiéndolo. <em>"Prometí vengarme de este mundo injusto."</em></p>
+            <img src="imagenes/piano.jpg" alt="Piano destruido" class="imagen-viñeta">
+            <button class="btn-siguiente" onclick="cambiarViñeta(4)">Siguiente</button>
+        </div>
+
+        <!-- Viñeta 4 -->
+        <div class="viñeta" id="viñeta4">
+            <h2>La Máquina del Caos</h2>
+            <p>Arima activa <strong>"Requiem"</strong>, un dispositivo que hará estallar APRIL. <em>"Nadie merece este lugar."</em></p>
+            <img src="imagenes/maquina.jpg" alt="Máquina de destrucción" class="imagen-viñeta">
+            <button class="btn-siguiente" onclick="cambiarViñeta(5)">Siguiente</button>
+        </div>
+
+        <!-- Viñeta 5: Punto de decisión -->
+        <div class="viñeta" id="viñeta5">
+            <h2>Los Inocentes</h2>
+            <p>Descubre que entre las víctimas hay huérfanos como él. Uno le entrega una tecla de piano: <em>"Es todo lo que tengo."</em></p>
+            <img src="imagenes/inocentes.jpg" alt="Niños refugiados" class="imagen-viñeta">
+            <div class="opciones">
+                <button onclick="elegir('salvar')">Salvarlos (Ética del cuidado)</button>
+                <button onclick="elegir('destruir')">Continuar (Egoísmo)</button>
+            </div>
+        </div>
+
+        <!-- RAMA A: REDENCIÓN -->
+        <div class="viñeta" id="viñeta6a">
+            <h2>Decisión</h2>
+            <img src="imagenes/desconecta.png" alt="Niños refugiados" class="imagen-viñeta">
+            <p>Arima desconecta "Requiem". <em>"No seré como los que me destruyeron."</em></p>
+            <button class="btn-siguiente" onclick="cambiarViñeta('7a')">Siguiente</button>
+        </div>
+
+        <div class="viñeta" id="viñeta7a">
+            <h2>Nueva Esperanza</h2>
+            <img src="imagenes/niño entrega la tecla.png" alt="Niños refugiados" class="imagen-viñeta">
+            <p>Los supervivientes lo miran con sorpresa. <em>"¿Por qué nos salvaste?"</em></p>
+            <button class="btn-siguiente" onclick="cambiarViñeta('8a')">Siguiente</button>
+        </div>
+
+        <div class="viñeta" id="viñeta8a">
+            <h2>Reconstrucción</h2>
+            <img src="imagenes/inocentes.jpg" alt="Niños refugiados" class="imagen-viñeta">
+            <p>Arima usa su tecnología para ayudar a reconstruir APRIL. <em>"Quizá el arte no está muerto."</em></p>
+            <button class="btn-siguiente" onclick="cambiarViñeta('13a')">Siguiente</button>
+        </div>
+
+        <!-- RAMA B: DESTRUCCIÓN -->
+        <div class="viñeta" id="viñeta6b">
+            <h2>Decisión</h2>
+            <p>Arima ignora a los inocentes. <em>"El dolor no tiene favoritos."</em></p>
+            <button class="btn-siguiente" onclick="cambiarViñeta('7b')">Siguiente</button>
+        </div>
+
+        <div class="viñeta" id="viñeta7b">
+            <h2>Caos</h2>
+            <p>APRIL estalla en llamas. El niño lo maldice: <em>"Eres un monstruo."</em></p>
+            <button class="btn-siguiente" onclick="cambiarViñeta('8b')">Siguiente</button>
+        </div>
+
+        <div class="viñeta" id="viñeta8b">
+            <h2>Vacío</h2>
+            <p>Arima se quita la máscara y llora. <em>"¿Por qué sigo vacío?"</em></p>
+            <button class="btn-siguiente" onclick="cambiarViñeta('13b')">Siguiente</button>
+        </div>
+
+        <!-- Viñeta 13: Reflexión Final -->
+        <div class="viñeta" id="viñeta13a">
+            <h2>Reflexión Final</h2>
+            <img src="imagenes/espejo-roto-redencion.jpg" alt="Espejo roto - Redención" class="imagen-viñeta">
+            <p class="frase-reflexion">"El cuidado del otro sana heridas."</p>
+            <button class="btn-siguiente" onclick="cambiarViñeta('14')">Siguiente</button>
+        </div>
+
+        <div class="viñeta" id="viñeta13b">
+            <h2>Reflexión Final</h2>
+            <img src="imagenes/espejo-roto-destruccion.jpg" alt="Espejo roto - Destrucción" class="imagen-viñeta">
+            <p class="frase-reflexion">"El egoísmo es la prisión más fuerte."</p>
+            <button class="btn-siguiente" onclick="cambiarViñeta('14')">Siguiente</button>
+        </div>
+
+        <!-- Viñeta 14: Créditos Éticos -->
+        <div class="viñeta" id="viñeta14">
+            <h2>Créditos Éticos</h2>
+            <div class="creditos">
+                <p>Basado en teorías del curso:</p>
+                <ul>
+                    <li>Ética de la liberación</li>
+                    <li>Utilitarismo negativo</li>
+                    <li>Ética del cuidado</li>
+                </ul>
+            </div>
+            <button class="btn-siguiente" onclick="cambiarViñeta('15')">Siguiente</button>
+        </div>
+
+        <!-- Viñeta 15: Llamado a la Acción -->
+        <div class="viñeta" id="viñeta15">
+            <h2>¿Qué elegirías tú?</h2>
+            <img src="imagenes/piano-final.jpg" alt="Piano reconstruido o en ruinas" class="imagen-viñeta">
+            <div class="llamado-accion">
+                <p>Revisa las actividades 1 y 2 para profundizar en estas teorías éticas.</p>
+                <button class="btn-reiniciar" onclick="reiniciar()">Volver al inicio</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #0a0a0a;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.historieta {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+}
+
+.viñeta {
+    display: none;
+    padding: 20px;
+    border: 2px solid #ff0000;
+    border-radius: 10px;
+    background-color: #1a1a1a;
+    animation: fadeIn 0.5s;
+    
+}
+
+.viñeta.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+img.imagen-viñeta {
+    width: 100% !important;
+    max-width: 800px !important;
+    height: auto !important;
+    max-height: 600px !important;
+    display: block;
+    margin: 0 auto;
+}
+
+
+button {
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #cc0000;
+}
+
+.opciones {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-reiniciar {
+    background-color: #333;
+}
+/* Estilos para las nuevas viñetas */
+.frase-reflexion {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: #ff0000;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.creditos {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.creditos ul {
+    text-align: left;
+    margin: 10px 30px;
+}
+
+.llamado-accion {
+    margin-top: 30px;
+    line-height: 1.6;
+}
+/* Efecto zoom al hacer clic en imágenes */
+.imagen-viñeta.zoom {
+    transform: scale(1.5);
+    transition: transform 0.3s;
+    z-index: 100;
+}
+
+/* Estilo para el historial de decisiones */
+#historial-decisiones {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    max-width: 200px;
+}
